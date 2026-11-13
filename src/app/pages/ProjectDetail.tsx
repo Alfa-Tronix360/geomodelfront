@@ -19,6 +19,7 @@ import {
   ErrorBox, EstadoBadge, Field, InfoBox, Loading, Modal, PageHeader, Progress, Tabs,
   type Coluna,
 } from "@/app/components/ui";
+import { EstadoAutomatico } from "@/app/components/campos";
 import { ProjectMap } from "@/app/components/ProjectMap";
 import { Cena3D } from "@/app/components/Cena3D";
 import { useToast } from "@/app/components/Toast";
@@ -550,14 +551,7 @@ export default function ProjectDetailPage() {
             <Field label="Província"><input className="input" value={form.provincia} onChange={(e) => setForm({ ...form, provincia: e.target.value })} /></Field>
             <Field label="Município"><input className="input" value={form.municipio} onChange={(e) => setForm({ ...form, municipio: e.target.value })} /></Field>
             <Field label="Área (km²)"><input className="input" type="number" min="0" step="0.01" value={form.area_km2} onChange={(e) => setForm({ ...form, area_km2: e.target.value })} /></Field>
-            <Field label="Estado">
-              <select className="select" value={form.estado} onChange={(e) => setForm({ ...form, estado: e.target.value })}>
-                <option value="planeado">Planeado</option>
-                <option value="activo">Activo</option>
-                <option value="suspenso">Suspenso</option>
-                <option value="encerrado">Encerrado</option>
-              </select>
-            </Field>
+            <EstadoAutomatico tipo="projecto" valor={form.estado} actual={p.estado} aoMudar={(v) => setForm({ ...form, estado: v })} />
             <Field label="Data de início"><input className="input" type="date" value={form.data_inicio} onChange={(e) => setForm({ ...form, data_inicio: e.target.value })} /></Field>
             <Field label="Data de fim"><input className="input" type="date" value={form.data_fim} onChange={(e) => setForm({ ...form, data_fim: e.target.value })} /></Field>
             <Field label="Descrição" className="span-2"><textarea className="textarea" value={form.descricao} onChange={(e) => setForm({ ...form, descricao: e.target.value })} /></Field>

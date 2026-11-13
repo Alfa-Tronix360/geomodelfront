@@ -16,6 +16,7 @@ import {
   EstadoBadge, Field, Kpi, Loading, Modal, PageHeader, Pagination, SearchInput,
   type Coluna,
 } from "@/app/components/ui";
+import { EstadoAutomatico } from "@/app/components/campos";
 import { useToast } from "@/app/components/Toast";
 
 interface FormFuro {
@@ -425,11 +426,7 @@ export default function DrillHolesPage() {
                 {TIPOS.map((tipo) => <option key={tipo} value={tipo}>{rotuloEstado(tipo)}</option>)}
               </select>
             </Field>
-            <Field label="Estado">
-              <select className="select" value={form.estado} onChange={(e) => actualizar("estado", e.target.value)}>
-                {ESTADOS.map((opcao) => <option key={opcao.valor} value={opcao.valor}>{opcao.rotulo}</option>)}
-              </select>
-            </Field>
+            <EstadoAutomatico tipo="furo" valor={form.estado} actual={editando?.estado} aoMudar={(v) => actualizar("estado", v)} />
             <Field label="Latitude">
               <input className="input" type="number" step="0.000001" value={form.latitude} onChange={(e) => actualizar("latitude", e.target.value)} placeholder="-12.500000" />
             </Field>

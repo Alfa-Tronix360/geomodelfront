@@ -14,6 +14,7 @@ import {
   Badge, Card, CardBody, CardHead, ConfirmDialog, EmptyState, ErrorBox, EstadoBadge,
   Field, Loading, Modal, PageHeader, Pagination, SearchInput,
 } from "@/app/components/ui";
+import { EstadoAutomatico } from "@/app/components/campos";
 import { ProjectMap } from "@/app/components/ProjectMap";
 import { useToast } from "@/app/components/Toast";
 
@@ -397,11 +398,7 @@ export default function ProjectsPage() {
             <Field label="Área (km²)">
               <input className="input" type="number" min="0" step="0.01" value={form.area_km2} onChange={(e) => actualizar("area_km2", e.target.value)} />
             </Field>
-            <Field label="Estado">
-              <select className="select" value={form.estado} onChange={(e) => actualizar("estado", e.target.value)}>
-                {ESTADOS.map((opcao) => <option key={opcao.valor} value={opcao.valor}>{opcao.rotulo}</option>)}
-              </select>
-            </Field>
+            <EstadoAutomatico tipo="projecto" valor={form.estado} actual={editando?.estado} aoMudar={(v) => actualizar("estado", v)} />
             <Field label="Data de início">
               <input className="input" type="date" value={form.data_inicio} onChange={(e) => actualizar("data_inicio", e.target.value)} />
             </Field>

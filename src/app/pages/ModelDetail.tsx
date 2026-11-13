@@ -15,6 +15,7 @@ import {
   Badge, Card, CardBody, CardHead, ConfirmDialog, DataTable, DetailRow, EmptyState,
   ErrorBox, EstadoBadge, Field, InfoBox, Kpi, Loading, Modal, PageHeader, Tabs, type Coluna,
 } from "@/app/components/ui";
+import { SeletorCor } from "@/app/components/campos";
 import { useToast } from "@/app/components/Toast";
 
 interface FormDominio {
@@ -506,23 +507,16 @@ export default function ModelDetailPage() {
               <input className="input" value={formDominio.nome} onChange={(e) => setFormDominio({ ...formDominio, nome: e.target.value })} />
             </Field>
             <Field label="Litologia">
-              <select className="select" value={formDominio.lithology_id} onChange={(e) => setFormDominio({ ...formDominio, lithology_id: e.target.value })}>
+              <select className="select" value={formDominio.lithology_id} onChange={(e) => {
+                // ao escolher a litologia, o domínio herda a cor dela (pode ser trocada a seguir)
+                const lito = (litologias.dados ?? []).find((item) => item.id === e.target.value);
+                setFormDominio({ ...formDominio, lithology_id: e.target.value, cor: lito?.cor || formDominio.cor });
+              }}>
                 <option value="">Sem litologia associada</option>
                 {(litologias.dados ?? []).map((item) => <option key={item.id} value={item.id}>{item.codigo} · {item.nome}</option>)}
               </select>
             </Field>
-            <Field label="Cor">
-              <div className="row" style={{ gap: 8 }}>
-                <input
-                  type="color"
-                  value={formDominio.cor || "#0f766e"}
-                  onChange={(e) => setFormDominio({ ...formDominio, cor: e.target.value })}
-                  style={{ width: 46, height: 38, borderRadius: 9, border: "1px solid var(--line)", background: "var(--surface)", padding: 3 }}
-                  aria-label="Cor do domínio"
-                />
-                <input className="input" value={formDominio.cor} onChange={(e) => setFormDominio({ ...formDominio, cor: e.target.value })} placeholder="#0f766e" />
-              </div>
-            </Field>
+            <SeletorCor rotulo="Cor do domínio" valor={formDominio.cor} aoMudar={(cor) => setFormDominio({ ...formDominio, cor })} />
             <Field label="Descrição" className="span-2">
               <textarea className="textarea" value={formDominio.descricao} onChange={(e) => setFormDominio({ ...formDominio, descricao: e.target.value })} />
             </Field>
