@@ -279,6 +279,21 @@ h1, h2, h3, h4, p { margin: 0; }
   box-shadow: var(--shadow); padding: 6px; z-index: 50;
   animation: pop 0.14s ease-out;
 }
+/* sino de notificações */
+.sino__contador { position: absolute; top: 3px; right: 3px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 99px; background: var(--danger); color: #fff; font-size: 10px; font-weight: 800; line-height: 17px; text-align: center; box-shadow: 0 0 0 2px var(--surface); }
+.menu.sino { width: min(380px, calc(100vw - 24px)); padding: 0; overflow: hidden; }
+.sino__cab { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.sino__cab strong { font-size: 13.5px; }
+.sino__todas { display: inline-flex; align-items: center; gap: 5px; background: none; border: 0; padding: 0; color: var(--primary); font-size: 12px; font-weight: 700; cursor: pointer; }
+.sino__vazio { margin: 0; padding: 18px 16px; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+.sino__lista { list-style: none; margin: 0; padding: 0; max-height: 420px; overflow-y: auto; }
+.sino__item { display: grid; gap: 3px; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--line); padding: 11px 14px 11px 22px; cursor: pointer; position: relative; color: var(--ink-2); }
+.sino__item:hover { background: var(--surface-2); }
+.sino__item.is-nova { background: color-mix(in srgb, var(--primary) 7%, transparent); color: var(--ink); }
+.sino__item.is-nova::before { content: ""; position: absolute; left: 9px; top: 16px; width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
+.sino__titulo { font-size: 13px; font-weight: 700; }
+.sino__msg { font-size: 12px; line-height: 1.45; color: var(--muted); }
+.sino__quando { font-size: 11px; color: var(--muted); }
 .menu__head { padding: 9px 10px 10px; border-bottom: 1px solid var(--line); margin-bottom: 5px; }
 .menu__head strong { display: block; font-size: 13px; }
 .menu__head span { display: block; font-size: 11.5px; color: var(--muted); }

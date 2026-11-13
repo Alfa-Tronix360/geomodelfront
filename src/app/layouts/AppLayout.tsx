@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
-  Activity, Bell, Building2, ChevronDown, Cuboid, FlaskConical,
+  Activity, Building2, ChevronDown, Cuboid, FlaskConical,
   FolderKanban, Gem, LayoutDashboard, LogOut, Menu, Microscope, Moon, Mountain,
   ScrollText, Search, Settings, ShieldCheck, Sun, Upload, Users, X,
   type LucideIcon,
@@ -9,6 +9,7 @@ import {
 import { useAuth } from "@/app/services/auth";
 import { iniciais } from "@/app/services/format";
 import { Avatar, BrandMark } from "@/app/components/ui";
+import { Sino } from "@/app/components/Sino";
 
 interface ItemMenu {
   titulo: string;
@@ -234,10 +235,7 @@ export function AppLayout() {
                 </select>
               </label>
             )}
-            <button className="icon-btn keep" aria-label="Notificações" title="Notificações">
-              <Bell size={18} />
-              <span className="ping" />
-            </button>
+            <Sino empresaId={empresaActual?.id} />
 
             <div className="menu-wrap" ref={utilizadorRef}>
               <button
